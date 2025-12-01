@@ -10,8 +10,6 @@
 #include <string>
 #include <stdexcept>
 
-
-
 float probabilities(const vector<City>& cities, double alpha,double beta, double rho,int num_cities){
 
     vector<double> probTabu;

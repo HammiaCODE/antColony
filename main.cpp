@@ -21,7 +21,7 @@ int main(){
     cout << "Ant Colony Optimization Algorithm for TSP" << endl; 
 
     int num_cities, iterations;
-    int beta, alpha, rho;
+    double beta, alpha, rho;
     cout << "How many cities? ";
     cin >> num_cities;
 
