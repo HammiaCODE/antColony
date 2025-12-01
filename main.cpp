@@ -17,15 +17,23 @@ int main(){
         cerr << e.what() << '\n';
     }
 
-    int number_of_cities;
-    cout << "How many cities? ";
-    cin >> number_of_cities;
+    cout << "Ant Colony Optimization Algorithm for TSP" << endl; 
 
-    if(number_of_cities > total_cities.size()){
-        number_of_cities = total_cities.size();
+    int num_cities, iterations;
+    cout << "How many cities? ";
+    cin >> num_cities;
+
+    cout<< endl;
+    cout << "How many iterations? ";
+    cin >> iterations;
+
+    if(num_cities > total_cities.size()){
+        num_cities = total_cities.size();
     }
 
-
+    for(int i=0;i<iterations;i++){
+        
+    }
 
     return 0;
 }
