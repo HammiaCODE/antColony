@@ -11,13 +11,12 @@
 #include <algorithm>
 #include <stdexcept>
 
-
-
-double probabilities(const vector<City>& cities, double alpha, double beta, double rho, int num_cities)
+double probabilities(const vector<City>& cities, double alpha, double beta, double pheromones, int num_cities)
 {
     vector<double> desTab;
     vector<double> probTab;
     double prob;
+    double Tij= pheromones*alpha;
 
     // distance matrix
     vector<vector<double>> distances = DistGraph(cities);
@@ -26,7 +25,7 @@ double probabilities(const vector<City>& cities, double alpha, double beta, doub
     vector<Edge> edges = BuildEdges(distances, num_cities);
 
     for (int j = 0; j < edges.size(); j++) {
-        double desirability = 1.0 / edges[j].distance;  
+        double desirability = (1.0 / edges[j].distance)*beta;  
         desTab.push_back(desirability);                
     }
 
@@ -34,7 +33,7 @@ double probabilities(const vector<City>& cities, double alpha, double beta, doub
     for (double d : desTab) dSum += d;
 
     for(int k=0;k<desTab.size();k++){
-        prob = (rho * desTab[k]) / dSum;
+        prob = (Tij * desTab[k]) / dSum;
         probTab.push_back(prob);
     }
 
@@ -43,6 +42,13 @@ double probabilities(const vector<City>& cities, double alpha, double beta, doub
     return probTab[0];
 }
 
+double pheromoneUpdate(double dSum, double rho, double pheromones){
+    vector<double> updateMatrix;
+    double vaporization;
+
+    vaporization=(1-rho)*pheromones;
+
+}
 
 
 int ACO_TSP(const vector<City>& cities, double alpha, double beta, double rho,int num_cities){

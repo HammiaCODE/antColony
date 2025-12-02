@@ -21,7 +21,8 @@ int main(){
     cout << "Ant Colony Optimization Algorithm for TSP" << endl; 
 
     int num_cities, iterations;
-    double beta, alpha, rho;
+    double beta, alpha, rho, pheromones;
+    //update pheromones after each cycle
     cout << "How many cities? ";
     cin >> num_cities;
 
@@ -40,6 +41,11 @@ int main(){
     cout<< endl;
     cout << "Rho (P): ";
     cin >> rho;
+
+    cout<< endl;
+    cout << "Pheromones: ";
+    cin >> pheromones;
+
 
     if(num_cities > total_cities.size()){
         num_cities = total_cities.size();
