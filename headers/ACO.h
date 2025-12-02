@@ -8,40 +8,48 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <algorithm>
 #include <stdexcept>
 
-float probabilities(const vector<City>& cities, double alpha,double beta, double rho,int num_cities){
-
-    vector<double> probTabu;
-    vector<double> probConstruct;
 
 
-    // distance matrix, time and space complexity O(n^2)
+double probabilities(const vector<City>& cities, double alpha, double beta, double rho, int num_cities)
+{
+    vector<double> desTab;
+    vector<double> probTab;
+    double prob;
+
+    // distance matrix
     vector<vector<double>> distances = DistGraph(cities);
 
-    //build edges, O(n^2)
+    // edges
     vector<Edge> edges = BuildEdges(distances, num_cities);
-    
-    double desirability = 1/num_cities;
-    double pheromone;
-    
-    double probs = ((pheromone)*alpha)*(desirability*(beta));
-    double sumProbs,construct;
-    probTabu.push_back(probs);
 
-    for(int j=0;j<num_cities;j++){
-        sumProbs= probTabu[j]+probTabu[j+1];
-        construct=probs/sumProbs;
-        probConstruct.push_back(construct);
+    for (int j = 0; j < edges.size(); j++) {
+        double desirability = 1.0 / edges[j].distance;  
+        desTab.push_back(desirability);                
     }
+
+    double dSum = 0.0;
+    for (double d : desTab) dSum += d;
+
+    for(int k=0;k<desTab.size();k++){
+        prob = (rho * desTab[k]) / dSum;
+        probTab.push_back(prob);
+    }
+
+    sort(probTab.begin(),probTab.end());
+
+    return probTab[0];
 }
 
 
+
 int ACO_TSP(const vector<City>& cities, double alpha, double beta, double rho,int num_cities){
-    // distance matrix, time and space complexity O(n^2)
+    // distance matrix
     vector<vector<double>> distances = DistGraph(cities);
 
-    //build edges, O(n^2)
+    //edges
     vector<Edge> edges = BuildEdges(distances, num_cities);
 
 }
