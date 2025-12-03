@@ -22,27 +22,28 @@ int main(){
 
     int num_cities, iterations;
     double beta, alpha, rho, pheromones;
+    
     //update pheromones after each cycle
     cout << "How many cities? ";
     cin >> num_cities;
 
-    cout<< endl;
+    cout<< "-----" << endl;
     cout << "How many iterations? ";
     cin >> iterations;
 
-    cout<< endl;
+    cout<< "-----" << endl;
     cout << "Beta (β): ";
     cin >> beta;
 
-    cout<< endl;
+    cout<< "-----" << endl;
     cout << "Alpha (a): ";
     cin >> alpha;
 
-    cout<< endl;
+    cout<< "-----" << endl;
     cout << "Rho (P): ";
     cin >> rho;
 
-    cout<< endl;
+    cout<< "-----" << endl;
     cout << "Pheromones: ";
     cin >> pheromones;
 
@@ -71,10 +72,8 @@ int main(){
         cities.push_back(total_cities[unique_n[i]]);
     }
 
-    for(int i=0;i<iterations;i++){
-        //cout << ACO_TSP(cities,alpha,beta,rho)<<endl;
+    cout << "Value of the best route is: "<< ACO_TSP(cities, alpha, beta, rho, num_cities, iterations, pheromones)<<endl;
 
-    }
 
     return 0;
 }
